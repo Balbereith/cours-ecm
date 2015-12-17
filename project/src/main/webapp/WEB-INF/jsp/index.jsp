@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-    <fragments:header />
+    <fragments:header name="index" />
 
     <div class="container">
         <h1>Des recettes, des idées pour déguster</h1>

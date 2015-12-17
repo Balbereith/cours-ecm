@@ -1,5 +1,5 @@
 <%@ tag body-content="empty" pageEncoding="UTF-8" %>
-
+<%@ attribute name="name" required="true" %>
 <div class="container">
     <div class="header">
         <ul>
@@ -12,13 +12,14 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="/">Cooking Miam Miam</a>
+
                     </div>
 
                     <div class="collapse navbar-collapse" id="navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li><a href="/recettes">Toutes les recettes</a></li>
-                            <li><a href="/recette-du-moment">Recette du moment</a></li>
+                            <li class=${name=="index"? "active":""}><a class="navbar-brand" href="/">Cooking Miam Miam</a></li>
+                            <li class=${name=="recettes"? "active":""}><a href="/recettes">Toutes les recettes</a></li>
+                            <li class=${name=="recette du moment"? "active":""}><a href="/recette-du-moment">Recette du moment</a></li>
                         </ul>
                     </div>
                 </div>

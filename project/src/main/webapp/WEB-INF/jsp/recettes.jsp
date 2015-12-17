@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-     <fragments:header />
+     <fragments:header name="recettes" />
 
     <div class="container">
         <h1>Toutes nos recettes</h1>
