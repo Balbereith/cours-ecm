@@ -15,7 +15,9 @@
     <div class="col-xs-12 col-sm-8">
         <h1>${fn:escapeXml(recipe.title)}</h1>
         <p>${fn:escapeXml(recipe.intro)}</p>
-        <span class="label label-primary">${fn:escapeXml(recipe.tags)}</span>
+        <c:forEach var="tag" items="${recipe.tags}">
+            <span>${fn:escapeXml(tag)}, </span>
+        </c:forEach>
         <p><fmt:formatDate value="${recipe.date}"  pattern="dd MM yyyy"/></p>
         <c:if test="${not empty recipe.ingredients}">
             <ul>
