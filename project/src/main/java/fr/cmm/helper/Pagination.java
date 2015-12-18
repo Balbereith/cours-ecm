@@ -29,7 +29,9 @@ public class Pagination {
     }
 
     public int getPageCount() {
-        return (int) count / pageSize;
+        int dividedCount = (int) Math.floor(count / pageSize);
+        int pageNumber = ((int)count % pageSize == 0)? dividedCount:dividedCount+1;
+        return pageNumber;
     }
 
     public List<Integer> getPages() {
