@@ -44,7 +44,15 @@ public class RecipeService {
     }
 
     public Recipe findById(String id) {
-        return recipeCollection.findOne(new ObjectId(id)).as(Recipe.class);
+        try {
+            new ObjectId(id);
+        }
+        catch (IllegalArgumentException e){
+            return null;
+        }
+        {
+            return recipeCollection.findOne(new ObjectId(id)).as(Recipe.class);
+        }
     }
 
     public void save(Recipe recipe) {
