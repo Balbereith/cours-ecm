@@ -47,7 +47,7 @@ public class IndexController {
 
         model.put("recipes", recipeService.findByQuery(pageQuery));
         model.put("pagination", pagination);
-        model.put("tag", pageQuery.getTag());
+        model.put("SearchForm", searchForm);
 
         return "recettes";
     }
