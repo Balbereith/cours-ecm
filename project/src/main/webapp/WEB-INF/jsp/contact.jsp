@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-    <fragments:header />
+    <fragments:header name="contact"/>
 
     <div class="container">
         <h1>Contact</h1>

@@ -17,7 +17,7 @@
 </head>
 <body>
 
-    <fragments:header />
+    <fragments:header name="recette" />
 
     <div class="container">
         <fragments:recipe recipe="${recipe}" />

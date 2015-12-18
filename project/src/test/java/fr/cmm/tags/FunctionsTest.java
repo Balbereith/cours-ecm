@@ -13,9 +13,9 @@ public class FunctionsTest {
 
     @Test
     public void testNewLineTransformnbr() throws Exception {
-        assertEquals("a", Functions.newLineTransformnbr("a"));
-        assertEquals("a<br>", Functions.newLineTransformnbr("a/n"));
-        assertEquals("a<br>a<br>", Functions.newLineTransformnbr("a/na/n"));
-        assertEquals("&a", Functions.newLineTransformnbr("&a"));
+        assertEquals("fn:escapeXml(a)", Functions.newLineTransformnbr("a"));
+        assertEquals("fn:escapeXml(a<br>)", Functions.newLineTransformnbr("a/n"));
+        assertEquals("fn:escapeXml(a<br>a<br>)", Functions.newLineTransformnbr("a/na/n"));
+        assertEquals("fn:escapeXml(&a)", Functions.newLineTransformnbr("&a"));
     }
 }
