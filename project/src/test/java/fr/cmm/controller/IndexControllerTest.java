@@ -57,8 +57,19 @@ public class IndexControllerTest {
     }
 
     @Test
+    public void recetteNotInDb() throws Exception {
+        String id = "56375619d4c603aa4eb412af";
+
+        Mockito.when(recipeService.findById(id)).thenReturn(null);
+
+        mockMvc.perform(get("/recette/" + id))
+                .andExpect(status().is(404));
+    }
+
+    @Test
     public void contact() throws Exception {
         mockMvc.perform(get("/contact"))
                 .andExpect(view().name("contact"));
     }
+
 }
