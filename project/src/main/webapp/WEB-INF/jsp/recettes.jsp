@@ -34,7 +34,7 @@
         <ul class="search-results">
             <c:forEach var="item" items="${recipes}">
                 <li>
-                    <a href="/recette/${item.id}">
+                    <a href="/recette/${item.id<1? 1:item.id}">
                         <div class="row">
                             <div class="col-xs-3">
                                 <img src="/image/${item.imageId}" alt="${fn:escapeXml(item.title)}" style="height: 200px">
