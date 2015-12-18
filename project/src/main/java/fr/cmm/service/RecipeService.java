@@ -18,30 +18,14 @@ public class RecipeService {
 
     private class ReturningValues {
 
-        public final String value;
-        public final Object[] index;
+        private String mongoQuery = "{}";
+        private String[] params = {};
 
-        public ReturningValues(String value, Object[] index) {
-            this.value = value;
-            this.index = index;
-        }
         private ReturningValues(PageQuery query){
-            String mongoQuery = "{}";
-            String[] params = {};
-
             if (query.getTag() != null && !"".equals(query.getTag())) {
                 mongoQuery = "{tags: #}";
                 params = new String[]{query.getTag()};
             }
-            this.value = mongoQuery;
-            this.index = params;
-        }
-
-        public String getValue() {
-            return value;
-        }
-        public Object[] getIndex() {
-            return index;
         }
 
     }
@@ -50,7 +34,7 @@ public class RecipeService {
         ReturningValues varMongoQuery = new ReturningValues(query);
 
         return recipeCollection
-                .find(varMongoQuery.getValue(), (Object[]) varMongoQuery.getIndex())
+                .find(varMongoQuery.mongoQuery, varMongoQuery.params)
                 .skip(query.skip())
                 .limit(query.getSize())
                 .as(Recipe.class);
@@ -59,7 +43,7 @@ public class RecipeService {
     public long countByQuery(PageQuery query) {
         ReturningValues varMongoQuery = new ReturningValues(query);
 
-        return recipeCollection.count(varMongoQuery.getValue(), (Object[]) varMongoQuery.getIndex());
+        return recipeCollection.count(varMongoQuery.mongoQuery, (Object[]) varMongoQuery.params);
     }
 
     public Iterator<Recipe> findRandom(int count) {
