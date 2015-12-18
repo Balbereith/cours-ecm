@@ -22,6 +22,7 @@ import static fr.cmm.SpringProfiles.INTEG;
 import static java.util.Arrays.asList;
 import static java.util.stream.StreamSupport.stream;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -110,8 +111,32 @@ public class RecipeServiceTest {
 
     @Test
     public void findByIdWithInvalidId(){
-        String id = "123pasvalide456";
+        assertNull(recipeService.findById("123pasvalide456"));
+    }
 
-        assertEquals(null, recipeService.findById(id));
+    @Test
+    public void countByQuerryTag24(){
+        recipeService.save(new Recipe().withTags("tag1", "tag2"));
+        recipeService.save(new Recipe().withTags("tag2", "tag3"));
+        recipeService.save(new Recipe().withTags("tag1", "tag2"));
+        recipeService.save(new Recipe().withTags("tag2", "tag3"));
+
+        PageQuery pageQuery = new PageQuery();
+        pageQuery.setTag("tag1");
+
+        assertEquals(2, recipeService.countByQuery(pageQuery));
+    }
+
+    @Test
+    public void countByQuerryTag44(){
+        PageQuery pageQuery = new PageQuery();
+        pageQuery.setTag("tag2");
+
+        recipeService.save(new Recipe().withTags("tag1", "tag2"));
+        recipeService.save(new Recipe().withTags("tag2", "tag3"));
+        recipeService.save(new Recipe().withTags("tag1", "tag2"));
+        recipeService.save(new Recipe().withTags("tag2", "tag3"));
+
+        assertEquals(4, recipeService.countByQuery(pageQuery));
     }
 }
