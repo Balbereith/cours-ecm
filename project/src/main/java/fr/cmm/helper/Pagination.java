@@ -3,6 +3,7 @@ package fr.cmm.helper;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Math.*;
 import static java.util.Arrays.asList;
 
 public class Pagination {
@@ -32,15 +33,23 @@ public class Pagination {
     }
 
     public int getPageCount() {
-        int dividedCount = (int) Math.floor(count / pageSize);
+        int dividedCount = (int) floor(count / pageSize);
         int pageNumber = ((int)count % pageSize == 0)? dividedCount:dividedCount+1;
         return pageNumber;
     }
 
     public List<Integer> getPages() {
         int index = this.getPageIndex();
-        int beginning = (int) Math.max(1, index - Math.floor(PAGINATION_SIZE/2-1));
-        int end = (int) Math.min(this.getPageCount(), beginning + PAGINATION_SIZE-1);
+        int beginning;
+
+        if ( index + floorDiv(PAGINATION_SIZE, 2) >= this.getCount()){
+            beginning = ( max(1, 2*this.getPageCount() - PAGINATION_SIZE -index));
+        }
+        else {
+            beginning = (int) max(1, index - floor(PAGINATION_SIZE/2-1));
+        }
+
+        int end = min(this.getPageCount(), beginning + PAGINATION_SIZE-1);
         List<Integer> resultList = new ArrayList<>();
         int x;
         for (x=beginning; x <= end; x=x+1){

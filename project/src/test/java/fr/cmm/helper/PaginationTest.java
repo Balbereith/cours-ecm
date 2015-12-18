@@ -50,4 +50,15 @@ public class PaginationTest {
         List<Integer> expectedResult = asList(1,2,3,4,5,6);
         assertEquals(expectedResult, pagination.getPages());
     }
+
+    @Test
+    public void getPagesWhenOnRightBorder(){
+        Pagination pagination = new Pagination();
+        pagination.setCount(20);
+        pagination.setPageSize(1);
+        pagination.setPageIndex(17);
+
+        List<Integer> expectedResult = asList(11,12,13,14,15,16,17,18,19,20);
+        assertEquals(expectedResult, pagination.getPages());
+    }
 }
